@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package payment.v1;
+
+
+
+service PaymentService {
+  rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
+}
+
+
+
+message CreatePaymentRequest {
+  string user_id = 1;
+  string screening_id = 2;
+  OrderInput order = 3;
+  optional string payment_method = 4;
+  bool save_payment_method = 5;
+
+}
+
+message OrderInput {
+    string order_id = 1;
+    string user_id = 2;
+    int32 price = 3;
+}
+
+message CreatePaymentResponse {
+  string url = 1;
+}
